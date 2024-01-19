@@ -77,4 +77,27 @@ const rootElement = document.getElementById('root');
 const reactDomRoot = createRoot(rootElement);
 
 /* 함수 실행 => JSX -> React.createElement() -> 리액트 요소 : ReactElement */
-reactDomRoot.render(createApp());
+function render(mode = 'data') {
+    reactDomRoot.render(createApp(mode === 'data' ? data : anotherData));
+}
+
+render();
+
+
+// 버튼 이벤트 핸들링
+const button = document.querySelector('button');
+
+// 데이터 전환을 위한 상태 변수
+let mode = 'data'; // 'data' | 'anotherData'
+
+const handleChangeMessage = () => {
+    if (mode.includes('data')) {
+        mode = 'anotherData';
+    } else {
+        mode = 'data';
+    }
+
+    render(mode);
+};
+
+button.addEventListener('click', handleChangeMessage);
