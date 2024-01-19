@@ -1,4 +1,5 @@
 import React from 'https://esm.sh/react';
+import React from 'https://esm.sh/react';
 import { createRoot } from 'https://esm.sh/react-dom';
 
 // HTML vs. JSX (HTML 아님, 문법은 XML과 유사)
@@ -61,31 +62,21 @@ const createApp = (data) => {
     );
 };
 
+// JSX에서 style 속성을 설정할 때는 JavaScript 객체로 설정해야 한다.
 const styles = {
     form: {
-        'margin-block': '8px',
-        'border-radius': '8px',
-        'padding': '16px',
+        'margin-block': '8px', 
+        'border-radius': '4px', 
+        'padding': '16px', 
         'background-color': '#f0f6f8',
     },
     input: {
-        'padding': '4px 6px',
+        'padding': '4px 6px', 
         'color': '#3d3b3f',
-    }
-}
+    },
+};
 
 const rootElement = document.getElementById('root');
 const reactDomRoot = createRoot(rootElement);
 
-reactDomRoot.render(
-    createApp(
-        data, 
-        { 
-            label: '중요도', 
-            isDisabled: false, 
-            min: 0, 
-            step: 1, 
-            max: 20 
-        },
-    )
-);
+reactDomRoot.render(createApp(data));
