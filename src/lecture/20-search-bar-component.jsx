@@ -16,20 +16,16 @@ import IconNaver from '../exercises/01-searchbar/component/IconNaver'
 
 function App() {
   return (
-    <div id="app">
+    <div
+      id="app"
+      style={{
+        display: 'flex',
+        flexFlow: 'column',
+        gap: 20,
+      }}
+    >
       {/* 인스턴스, 엘리먼트, 객체 */}
-      <SearchBar
-        totalPrice={32000}
-        student="김용범"
-        violinist="김다영"
-        isPureComponent={false}
-      >
-
-        <SearchButton>
-          <IconCircle />
-          <IconNaver />
-        </SearchButton>
-      </SearchBar>
+      <SearchBar />
     </div>
   );
 }

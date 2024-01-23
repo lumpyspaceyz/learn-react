@@ -1,4 +1,7 @@
 import './SearchBar.css';
+import SearchButton from './SearchButton'
+import IconNaver from './IconNaver';
+import FormControl from './FormControl';
 
 // 일반 함수
 // - 일반 함수는 항상 JSX를 반환할 필요가 없다.
@@ -15,11 +18,10 @@ function SearchBar(props) {
   return (
     <form className="searchBar" onSubmit={(e) => e.preventDefault()}>
       <div className="searchBarGroup" role="group">
-        {/* {renderIconNaver()} */}
-        {/* {renderFormControl()} */}
+        <IconNaver />
+        <FormControl />
       </div>
-      {/* {renderSearchButton()} */}
-      {props.children}
+      <SearchButton />
     </form>
   );
 }
