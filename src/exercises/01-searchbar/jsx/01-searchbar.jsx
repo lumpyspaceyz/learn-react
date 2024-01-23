@@ -1,9 +1,9 @@
 // no module (without from)
 import './01-searchbar.css';
 
-// module
-import React from 'https://esm.sh/react';
-import { createRoot } from 'https://esm.sh/react-dom';
+// module (with from)
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
 // DOM Script === Vanilla Script
 function bodyStyling() {
