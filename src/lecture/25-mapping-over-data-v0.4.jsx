@@ -1,3 +1,4 @@
+import { createElement as h } from 'react';
 import './25-mapping-over-data.css';
 import contactData from '../data/contacts.json';
 import { ContactCard, ContactCardList } from './23-contact-card';
@@ -5,13 +6,17 @@ import { ContactCard, ContactCardList } from './23-contact-card';
 export default function Exercise() {
   return (
     <ContactCardList>
-      {contactData.items.map((item) => (
-        <ContactCard key={item.id} {...item} />
-      ))}
+      {contactData.items.map(
+        (item) =>
+          // JSX
+          // <ContactCard key={item.id} {...item} />
+          // React API
+          h(ContactCard, /* props */ { key: item.id, ...item })
+        // React.createElement(type, props)  // props = { key, ... }
+      )}
     </ContactCardList>
   );
 }
-
 
 // key 속성은 왜 필요할까요?
 
@@ -23,4 +28,5 @@ export default function Exercise() {
 // - 이러한 비교 과정은 볼륨에 따라 많은 시간을 요하게 됩니다.
 // - 그러므로 이전 / 이후 변화가 있는 것만 비교하는 것이 보다 효과적인 알고리즘입니다.
 // - 효과적인 비교를 위해서는 고유 식별자가 필요합니다. 그것이 key 입니다.
-// - 모든 스냅샷에서 각 아이템을 고유하게 식별하므로서 리액트는 정확히 변경사항을 확인해 최상의 성능으로 변화를 반영합니다.
+// - 모든 스냅샷에서 각 아이템을 고유하게 식별하므로서
+//   리액트는 정확히 변경사항을 확인해 최상의 성능으로 변화를 반영합니다.
