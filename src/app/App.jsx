@@ -1,5 +1,5 @@
 import './App.css';
-import Exercise from '../lecture/21-widget-weather-component';
+import Exercise from '../lecture/23-contact-card';
 
 function App() {
   return (
