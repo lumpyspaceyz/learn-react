@@ -1,3 +1,9 @@
+// [react] render list
+// 오직 자바스크립트!(only javascript) syntax
+
+// [vue] list rendering
+// 템플릿(template) syntax
+
 import contactData from '../data/contacts.json';
 
 // [질문] Array는 이터레이터 프로토콜일까요?
