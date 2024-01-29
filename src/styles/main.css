@@ -42,7 +42,6 @@ body {
 
 .sr-only {
   overflow: hidden;
-  visibility: hidden;
   position: absolute;
   clip: rect(0, 0, 0, 0);
   clip-path: circle(0);
@@ -52,4 +51,19 @@ body {
   padding: 0;
   border: 0;
   white-space: nowrap;
+}
+
+body .group {
+  position: relative;
+  overflow: auto;
+  width: initial;
+  height: initial;
+  clip: auto;
+  clip-path: none;
+  white-space: wrap;
+  margin: 20px;
+  display: flex;
+  border: 10px solid currentColor;
+  padding: 20px;
+  background: red;
 }
