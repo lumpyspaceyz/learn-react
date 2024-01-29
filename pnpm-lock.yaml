@@ -14,28 +14,28 @@ dependencies:
 
 devDependencies:
   '@storybook/addon-essentials':
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
   '@storybook/addon-interactions':
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10
   '@storybook/addon-links':
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10(react@18.2.0)
   '@storybook/addon-onboarding':
     specifier: ^1.0.11
     version: 1.0.11(react-dom@18.2.0)(react@18.2.0)
   '@storybook/blocks':
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
   '@storybook/react':
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
   '@storybook/react-vite':
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(vite@5.0.11)
   '@storybook/test':
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10
   '@types/react':
     specifier: 18.2.48
@@ -44,19 +44,19 @@ devDependencies:
     specifier: 18.2.18
     version: 18.2.18
   '@vitejs/plugin-react':
-    specifier: ^4.2.1
+    specifier: 4.2.1
     version: 4.2.1(vite@5.0.11)
   eslint:
-    specifier: ^8.56.0
+    specifier: 8.56.0
     version: 8.56.0
   eslint-plugin-react:
-    specifier: ^7.33.2
+    specifier: 7.33.2
     version: 7.33.2(eslint@8.56.0)
   eslint-plugin-storybook:
-    specifier: ^0.6.15
+    specifier: 0.6.15
     version: 0.6.15(eslint@8.56.0)(typescript@5.3.3)
   storybook:
-    specifier: ^7.6.10
+    specifier: 7.6.10
     version: 7.6.10
   typescript:
     specifier: 5.3.3

@@ -1,6 +1,6 @@
 import bannerImage from '../assets/banner.png';
 import { A11yHidden } from '../components';
-import classes from './29-a11y-hidden-component-v3.module.css';
+import classes from './29-a11y-hidden-component.module.css';
 
 const bannerInfo =
   '미래를 향해, 미래를 항해 변화무쌍한 바다를 항해하는 것은 때로는 방향을 바꿔야 할 때도, 또 속도를 조절해야 할 때도 있습니다. 하지만 변함없는 것은 목적지를 향해 꾸준히 항해한다는 것입니다. 미래에도. 미래의 미래에도 행복은 지속가능해야 한다는 믿음으로 SK도 미래를 향해. 미래를 항해하겠습니다.';
@@ -59,6 +59,7 @@ function DemoImg(
   }
 ) {
   const classNames = `${classes.demo} ${className}`.trim();
+
   const defaultStyles = {
     backgroundImage: `url(${imageSource})`,
     width: width ? width / ratio : undefined,
@@ -66,18 +67,15 @@ function DemoImg(
     filter: 'blur(0px)',
   };
 
+  const styles = {
+    // 컴포넌트 개발자가 설정한 기본 스타일 객체
+    ...defaultStyles,
+    // 컴포넌트 사용자가 설정한 스타일 객체
+    ...customStyles,
+  };
+
   return (
-    <div
-      role="img"
-      className={classNames}
-      style={{
-        // 컴포넌트 개발자가 설정한 기본 스타일 객체
-        ...defaultStyles,
-        // 컴포넌트 사용자가 설정한 스타일 객체
-        ...customStyles,
-      }}
-      {...restProps}
-    >
+    <div role="img" className={classNames} style={styles} {...restProps}>
       {children}
     </div>
   );

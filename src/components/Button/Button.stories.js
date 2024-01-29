@@ -5,8 +5,8 @@ import Button from './Button';
 // 컴포넌트 스토리 메타 정보(객체)
 const storyMeta = {
   title: 'components/Button',
-  tags: ['autodocs'],
   component: Button,
+  tags: ['autodocs'],
   // props 객체
   args: {
     loading: false,
