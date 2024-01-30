@@ -19,10 +19,30 @@ import { getStaticImage } from '../utils';
 
 const newCat = catsData[2]; // [cat {}, cat {}, cat {}]
 
+// 비동기 함수
+// async function getCatsList() {
+//   return new Promise((resolve) => {
+//     // 2초 뒤에 실행 결과 반환
+//     // Promise { then, catch }
+//     setTimeout(() => {
+//       console.log('execute function');
+//       resolve(catsData);
+//     }, 2000);
+//   });
+// }
+
+function getCatsList() {
+  return catsData
+}
+
 function CatsList() {
   // 어떤 상태 ?
   // 고양이 집합(catsData) : Array
-  const [cats, setCats] = useState(catsData);
+  // 초깃값을 바로 설정
+  // const [cats, setCats] = useState(catsData);
+
+  // 함수를 실행해 반환된 값이 초깃값으로 설정
+  const [cats, setCats] = useState(getCatsList())
 
   // const handleDeleteCat =
   //   /* 함수 컴포넌트 실행 시 바로 실행되는 래퍼 함수 */
