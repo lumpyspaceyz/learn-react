@@ -40,16 +40,23 @@ function Exercise() {
     globalThis.alert('게임 패! 🥲');
   };
 
-  const handleStart = () => {
-    // 상태 변경 요청(trigger) -> 리액트 UI 렌더링(함수 컴포넌트 다시 실행 => JSX 다시 반환)
-    const nextIsPlaying = true;
-    setIsPlaying(nextIsPlaying);
-  };
+  const handleToggle = () => {
+    // 이전(previous) 상태 값 기반으로 값 설정
+    // isPlaying = true | false
+    setIsPlaying( /* [2] callback api */(isPlaying) => !isPlaying)
+  }
 
-  const handlePause = () => {
-    const nextIsPlaying = false;
-    setIsPlaying(nextIsPlaying);
-  };
+  // const handleStart = () => {
+  //   // 상태 변경 요청(trigger) -> 리액트 UI 렌더링(함수 컴포넌트 다시 실행 => JSX 다시 반환)
+  //   const nextIsPlaying = true;
+  //   // 새로운 (다음: next) 상태 값 설정
+  //   setIsPlaying( /* [1] new value */ nextIsPlaying);
+  // };
+
+  // const handlePause = () => {
+  //   const nextIsPlaying = false;
+  //   setIsPlaying(nextIsPlaying);
+  // };
 
   return (
     <>
@@ -71,7 +78,8 @@ function Exercise() {
         <button
           type="button"
           aria-label="게임 시작"
-          onClick={handleStart}
+          // onClick={handleStart}
+          onClick={handleToggle}
           disabled={isPlaying /* true */}
         >
           start
@@ -79,7 +87,8 @@ function Exercise() {
         <button
           type="button"
           aria-label="게임 일시정지"
-          onClick={handlePause}
+          // onClick={handlePause}
+          onClick={handleToggle}
           disabled={!isPlaying /* !false = true */}
         >
           pause
