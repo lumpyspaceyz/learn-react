@@ -47,7 +47,7 @@ function Exercise({ message }) {
   // function handleOthers(message) {
   //   // 함수 내보내기
   //   // 이벤트 핸들러
-  //   return function eventHandler(e) {
+  //   return function eventHander(e) {
   //     e.stopPropagation();
   //     console.log(e);
   //     // 스코프 영역의 매개변수 참조
