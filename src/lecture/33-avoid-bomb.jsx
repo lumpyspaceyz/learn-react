@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import { useState } from 'react';
 import classes from './33-avoid-bomb.module.css';
 // console.log(classes);
@@ -43,20 +45,21 @@ function Exercise() {
   const handleToggle = () => {
     // 이전(previous) 상태 값 기반으로 값 설정
     // isPlaying = true | false
-    setIsPlaying( /* [2] callback api */(isPlaying) => !isPlaying)
-  }
+    setIsPlaying(/* [2] callback api */(isPlaying) => !isPlaying);
+  };
 
-  // const handleStart = () => {
-  //   // 상태 변경 요청(trigger) -> 리액트 UI 렌더링(함수 컴포넌트 다시 실행 => JSX 다시 반환)
-  //   const nextIsPlaying = true;
-  //   // 새로운 (다음: next) 상태 값 설정
-  //   setIsPlaying( /* [1] new value */ nextIsPlaying);
-  // };
+  const handleStart = () => {
+    // 상태 변경 요청(trigger) -> 리액트 UI 렌더링(함수 컴포넌트 다시 실행 => JSX 다시 반환)
+    const nextIsPlaying = true;
+    // 새로운 (다음: next) 상태 값 설정
+    setIsPlaying(/* [1] new value */ nextIsPlaying);
+  };
 
-  // const handlePause = () => {
-  //   const nextIsPlaying = false;
-  //   setIsPlaying(nextIsPlaying);
-  // };
+  const handlePause = () => {
+    const nextIsPlaying = false;
+    // 새로운 (다음: next) 상태 값 설정
+    setIsPlaying(nextIsPlaying);
+  };
 
   return (
     <>
