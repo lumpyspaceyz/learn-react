@@ -3,15 +3,23 @@ import classes from './Stack.module.css';
 export default function Stack({
   as: Component = 'div',
   className: customClassNames = '',
-  // children,
+  style: customStyles,
   vertical = false,
-  ...restProps /* { children: <h2></h2> } */
+  ...restProps
 }) {
-  const classNames = `${classes.Stack} ${customClassNames}`.trim();
+  //
+  const componentClassNames = `${classes.Stack} ${customClassNames}`.trim();
 
-  console.log(vertical)
+  const componentStyles = {
+    '--direction': vertical ? 'column' : 'row',
+    ...customStyles,
+  };
 
-  return <Component className={classNames} {...restProps} />;
-
-  // return <Component>{children}</Component>;
+  return (
+    <Component
+      className={componentClassNames}
+      style={componentStyles}
+      {...restProps}
+    />
+  );
 }
