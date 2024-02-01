@@ -46,20 +46,21 @@ function Form() {
   };
 
   const handleChangeAllToppings = (e) => {
-    setOrderState((orderState) => ({
+    const { checked } = e.target;
+
+    const nextOrderState = {
       ...orderState,
-      isAllToppings: e.target.checked,
-    }));
-    setOrderState((orderState) => ({
-      ...orderState,
-      toppings: orderState.isAllToppings ? PIZZA.toppings : [],
-    }));
+      isAllToppings: checked,
+      toppings: checked ? PIZZA.toppings : [],
+    };
+
+    setOrderState(nextOrderState);
   };
 
   const handleChangePizzaToppings = (e) => {
     const { value: topping, checked: isChecked } = e.target;
 
-    // console.log('이전 토핑 목록: ', orderState.toppings);
+    console.log('이전 토핑 목록: ', orderState.toppings);
 
     let nextToppings = [];
 
@@ -123,6 +124,7 @@ function Form() {
           key={topping}
           name="topping"
           value={topping}
+          checked={orderState.toppings.includes(topping)}
           onChange={handleChangePizzaToppings}
         >
           {topping}
