@@ -23,9 +23,9 @@ const PIZZA = {
 };
 
 const INITIAL_ORDER = {
-  type: PIZZA.types[PIZZA.types.length - 1],
-  toppings: [],
+  type: PIZZA.types[0],
   isAllToppings: false,
+  toppings: [],
 };
 
 // Design is All. All is Design.
@@ -45,8 +45,57 @@ function Form() {
     setOrderState(nextOrderState);
   };
 
+  const handleChangeAllToppings = (e) => {
+    setOrderState((orderState) => ({
+      ...orderState,
+      isAllToppings: e.target.checked,
+    }));
+    setOrderState((orderState) => ({
+      ...orderState,
+      toppings: orderState.isAllToppings ? PIZZA.toppings : [],
+    }));
+  };
+
+  const handleChangePizzaToppings = (e) => {
+    const { value: topping, checked: isChecked } = e.target;
+
+    // console.log('이전 토핑 목록: ', orderState.toppings);
+
+    let nextToppings = [];
+
+    // 사용자가 눌렀을 때 체크되었다
+    if (isChecked) {
+      // 토핑 추가
+      nextToppings = [...orderState.toppings, topping];
+    } else {
+      // 토핑 삭제
+      nextToppings = orderState.toppings.filter((t) => t !== topping);
+    }
+
+    const hasFullFilledToppings = nextToppings.length === PIZZA.toppings.length;
+
+    const nextOrderState = {
+      ...orderState,
+      toppings: nextToppings,
+      isAllToppings: hasFullFilledToppings,
+    };
+
+    console.log('다음 토핑 목록: ', nextToppings, hasFullFilledToppings);
+
+    setOrderState(nextOrderState);
+  };
+
+  const handleOrder = (e) => {
+    e.preventDefault();
+    console.log(orderState);
+  };
+
+  const handleCancel = () => {
+    setOrderState(INITIAL_ORDER);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleOrder} onReset={handleCancel}>
       <h3>피자 타입을 선택하세요.</h3>
       {PIZZA.types.map((pizzaType) => (
         <FormChecker
@@ -61,22 +110,29 @@ function Form() {
       ))}
 
       <h3>피자 토핑을 추가합니다.</h3>
-      <FormChecker checkbox>전체 선택</FormChecker>
-      <FormChecker checkbox name="topping">
-        새우
+      <FormChecker
+        checkbox
+        checked={orderState.isAllToppings}
+        onChange={handleChangeAllToppings}
+      >
+        전체 선택
       </FormChecker>
-      <FormChecker checkbox name="topping">
-        고구마
-      </FormChecker>
-      <FormChecker checkbox name="topping">
-        감자
-      </FormChecker>
-      <FormChecker checkbox name="topping">
-        올리브
-      </FormChecker>
-      <FormChecker checkbox name="topping">
-        페페로니
-      </FormChecker>
+      {PIZZA.toppings.map((topping) => (
+        <FormChecker
+          checkbox
+          key={topping}
+          name="topping"
+          value={topping}
+          onChange={handleChangePizzaToppings}
+        >
+          {topping}
+        </FormChecker>
+      ))}
+
+      <Stack gap={4} my={16}>
+        <button type="submit">주문</button>
+        <button type="reset">취소</button>
+      </Stack>
     </form>
   );
 }

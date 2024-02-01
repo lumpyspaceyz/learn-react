@@ -1,7 +1,5 @@
 import { app as appClasName } from './App.module.css';
-import Exercise from '@/lecture/38-Stack-layout-component.jsx';
-
-console.log(appClasName);
+import Exercise from '@/lecture/38-stack-layout-component';
 
 function App() {
   return (
