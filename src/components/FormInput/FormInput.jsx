@@ -1,7 +1,6 @@
 import { useId } from 'react';
 import { A11yHidden } from '..';
 
-// 디자인에 완성이 있다? 없다
 function FormInput({
   as: ComponentName = 'div',
   name,
@@ -13,6 +12,7 @@ function FormInput({
   gap = 4,
   style: customStyle,
   hiddenLabel = false,
+  inputProps = {},
   ...restProps
 }) {
   const id = useId();
@@ -44,6 +44,7 @@ function FormInput({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        {...inputProps}
       />
     </ComponentName>
   );
