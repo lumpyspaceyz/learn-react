@@ -10,13 +10,15 @@ import classes from './36-lifting-state-up.module.css'
 // - 컴포넌트 사이에 상태를 공유하려면?
 //   공유하려는 컴포넌트 들의 가장 가까운 상위 컴포넌트로 상태를 끌어올려야 한다.
 
-function AccordionPanel({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleTogglePanel = () => setIsOpen(!isOpen);
+function AccordionPanel({ onToggle, index, isOpen = false, children }) {
+  // const [isOpen, setIsOpen] = useState(false);
+  // const handleTogglePanel = () => setIsOpen(!isOpen);
+
+  console.log(isOpen)
 
   return (
     <div className={classes.AccordionPanel}>
-      <button onClick={handleTogglePanel} type="button">
+      <button onClick={() => { onToggle(index) }} type="button">
         {isOpen ? '닫음' : '열림'}
       </button>
       <div hidden={!isOpen}>{children}</div>
@@ -27,14 +29,28 @@ function AccordionPanel({ children }) {
 function Accordion() {
   const style = { width: 250 }
 
+  const [openedPanelIndex, setOpenedPanelIndex] = useState(0)
+  const handleOpenPanel = (panelIndex) => {
+    console.log('func handleOpenPanel')
+    setOpenedPanelIndex(panelIndex)
+  };
+
   return (
     <div className={classes.Accordion}>
       <A11yHidden as='h3'>아코디언을 사용해 컴포넌트 간 상태 공유</A11yHidden>
-      <AccordionPanel>
+      <AccordionPanel
+        onToggle={handleOpenPanel}
+        index={0}
+        isOpen={openedPanelIndex === 0}
+      >
         <p>바보장군</p>
         <img style={style} src="../../public/images/janggun01.jpeg" alt="" />
       </AccordionPanel>
-      <AccordionPanel>
+      <AccordionPanel
+        onToggle={handleOpenPanel}
+        index={1}
+        isOpen={openedPanelIndex === 1}
+      >
         <p>째릿장군</p>
         <img style={style} src="../../public/images/janggun02.jpeg" alt="" />
       </AccordionPanel>
