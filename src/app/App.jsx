@@ -1,9 +1,10 @@
-import { app as appClasName } from './App.module.css';
-import Exercise from '@/lecture/40-side-effects';
+import './App.css';
+// import Exercise from '../lecture/36-lifting-state-up.jsx';
+import Exercise from '../practice/36-lifting-state-up.jsx';
 
 function App() {
   return (
-    <div className={appClasName}>
+    <div>
       <Exercise />
     </div>
   );

@@ -1,0 +1,13 @@
+.Accordion {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.AccordionPanel {
+  background-color: #fff;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
