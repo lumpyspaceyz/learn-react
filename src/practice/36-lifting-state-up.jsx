@@ -10,30 +10,27 @@ import classes from './36-lifting-state-up.module.css'
 // - 컴포넌트 사이에 상태를 공유하려면?
 //   공유하려는 컴포넌트 들의 가장 가까운 상위 컴포넌트로 상태를 끌어올려야 한다.
 
-function AccordionPanel({
-  onClick, // 버튼을 클릭했을 때 패널을 여는 이벤트 핸들러
+function AccordionPanel({ /* 자식 컴포넌트 */
+  onToggle, // 버튼을 클릭했을 때 패널을 여는 이벤트 핸들러(부모에서 동작)
   index, // 패널 식별 번호(정적)
-  isOpen, // 이거 왜 초기화?
+  isOpen = false, // (이거 왜 초기화?)
   children
 }) {
-  console.log('isOpen : ' + isOpen)
   return (
     <div className={classes.AccordionPanel}>
-      <button onClick={() => { onClick(index) }} type="button">
+      <button onClick={() => { onToggle(index) }} type="button">
         {isOpen ? '닫음' : '열림'}
       </button>
-      <div hidden={!isOpen}>{children}</div>
+      <div hidden={!isOpen}>{children}{isOpen}</div>
     </div>
   )
 }
 
-function Accordion() {
+function Accordion() { /* 부모 컴포넌트 */
   const style = { width: 250 }
 
   const [openedPanelIndex, setOpenedPanelIndex] = useState(0 /* 0 | 1 | 2 */)
   const handleOpenPanel = (panelIndex) => {
-    console.log('func handleOpenPanel')
-    console.log({ panelIndex })
     setOpenedPanelIndex(panelIndex)
   };
 
@@ -41,7 +38,7 @@ function Accordion() {
     <div className={classes.Accordion}>
       <A11yHidden as='h3'>아코디언을 사용해 컴포넌트 간 상태 공유</A11yHidden>
       <AccordionPanel
-        onClick={handleOpenPanel}
+        onToggle={handleOpenPanel}
         index={0}
         isOpen={openedPanelIndex === 0}
       >
@@ -49,7 +46,7 @@ function Accordion() {
         <img style={style} src="../../public/images/janggun01.jpeg" alt="" />
       </AccordionPanel>
       <AccordionPanel
-        onClick={handleOpenPanel}
+        onToggle={handleOpenPanel}
         index={1}
         isOpen={openedPanelIndex === 1}
       >
@@ -57,7 +54,7 @@ function Accordion() {
         <img style={style} src="../../public/images/janggun02.jpeg" alt="" />
       </AccordionPanel>
       <AccordionPanel
-        onClick={handleOpenPanel}
+        onToggle={handleOpenPanel}
         index={2}
         isOpen={openedPanelIndex === 2}
       >
