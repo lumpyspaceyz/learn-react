@@ -1,5 +1,7 @@
 import React from 'react';
 
+// 첫번째 커스텀(사용자 정의) 훅
+
 function Exercise() {
   return (
     <div>
