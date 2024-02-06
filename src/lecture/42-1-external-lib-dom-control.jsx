@@ -10,17 +10,24 @@ const BOX_OPTIONS = {
 
 function Exercise() {
   return (
-    <div className="flex gap-2">
-      {range(10, 160, 2).map((n) => (
-        <TiltBox key={n} options={BOX_OPTIONS}>
-          {n}
-        </TiltBox>
-      ))}
-    </div>
+    <>
+      <div className="flex gap-2">
+        {range(10, 160, 2).map((n) => (
+          <TiltBox key={n} options={BOX_OPTIONS}>
+            {n}
+          </TiltBox>
+        ))}
+      </div>
+    </>
   );
 }
 
-function TiltBox({ children, onTilt = null, options = {}, ...restProps }) {
+export function TiltBox({
+  children,
+  onTilt = null,
+  options = {},
+  ...restProps
+}) {
   const boxRef = useTilt({
     onTilt,
     options,
