@@ -1,28 +1,38 @@
-import { useState, useEffect, useRef } from 'react';
-import VanillaTilt from 'vanilla-tilt';
+import { useTilt } from '@/hooks';
+import { range } from '@/utils';
+
+const BOX_OPTIONS = {
+  reverse: true,
+  glare: true,
+  'max-glare': 0.7,
+  scale: 0.94,
+};
 
 function Exercise() {
-  // 사이드 이펙트
-  // DOM 접근/조작 (useRef)
-  // 외부 라이브러리 연결 (useEffect)
+  return (
+    <div className="flex gap-2">
+      {range(10, 160, 2).map((n) => (
+        <TiltBox key={n} options={BOX_OPTIONS}>
+          {n}
+        </TiltBox>
+      ))}
+    </div>
+  );
+}
 
-  const tiltBoxRef = useRef(null);
-
-  useEffect(() => {
-    const { current: element } = tiltBoxRef;
-
-    // 플러그인 연결
-    VanillaTilt.init(element);
-  }, []);
+function TiltBox({ children, onTilt = null, options = {}, ...restProps }) {
+  const boxRef = useTilt({
+    onTilt,
+    options,
+  });
 
   return (
-    <div>
-      <div
-        ref={tiltBoxRef}
-        className="flex justify-center items-center w-[200px] h-[200px] bg-gray-900 text-gray-50 rounded-lg"
-      >
-        {'Vanilla Icecream'.toUpperCase()}
-      </div>
+    <div
+      ref={boxRef}
+      className="flex justify-center items-center w-[200px] h-[200px] bg-gray-900 text-gray-50 rounded-lg"
+      {...restProps}
+    >
+      {children}
     </div>
   );
 }
