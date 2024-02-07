@@ -1,5 +1,8 @@
 import classes from './Avatar.module.css';
-import { string, boolean } from '@/utils/CustomPropTypes';
+// import { string, boolean } from '@/utils/CustomPropTypes';
+import PropTypes, { string, boolean } from 'prop-types'
+
+console.log(PropTypes)
 
 function Avatar({ photo, name = '', isOnline = false }) {
   const status = isOnline ? '온라인' : '오프라인';
@@ -17,7 +20,7 @@ function Avatar({ photo, name = '', isOnline = false }) {
 }
 
 Avatar.propTypes = {
-  photo: string,
+  photo: string.isRequired,
   name: string,
   isOnline: boolean,
 };
