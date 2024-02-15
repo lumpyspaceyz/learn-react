@@ -1,37 +1,41 @@
 import { getDocumentTitle } from '@/utils';
 import { Helmet } from 'react-helmet-async';
 import { FormInput } from '@/components';
-import { useRef, useState } from 'react';
-import { useReducer } from 'react';
+import { useRef, useReducer } from 'react';
 
-const manageMessagesReducer = (state, action /* { type, payload? } */) => {
+// 리듀서 함수
+const manageMessages = (state, action /* { type, payload? } */) => {
   // ADD ACTION
   if (action.type === '메시지/추가') {
     // 새로운 상태가 반환
     return {
       ...state,
-      messages: [action.payload, ...state.messages]
-    }
+      messages: [action.payload, ...state.messages],
+    };
   }
+
   // EDIT ACTION
-  // READ ACTION
 
   // DELETE ACTION
-  return state
-}
+
+  // DEFAULT ACTION
+  return state;
+};
 
 // 초깃값(관리할 상태)
 const INIT_MESSAGES_INFO = {
   messages: ['wow'],
-  newMessage: ''
-}
+};
 
 export function Component() {
   const inputRef = useRef(null);
-  const [messages, setMessages] = useState(['wow']);
-  const [newMessage, setNewMessage] = useState('');
+  // const [messages, setMessages] = useState(['wow']);
+  // const [newMessage, setNewMessage] = useState('');
 
-  const [messageState, dispatch] = useReducer(manageMessagesReducer, INIT_MESSAGES_INFO)
+  const [messageState, dispatch] = useReducer(
+    manageMessages,
+    INIT_MESSAGES_INFO
+  );
 
   return (
     <>
@@ -46,34 +50,32 @@ export function Component() {
         onSubmit={(e) => {
           e.preventDefault();
 
-          const formData = new FormData(e.target)
-          const newMessage = formData.get('message')
-
+          const formData = new FormData(e.target);
+          const newMessage = formData.get('message');
 
           // setMessages((m) => [newMessage, ...m]);
           // setNewMessage('');
 
-          dispatch({
+          const addAction = {
             type: '메시지/추가',
-            payload: newMessage
-          })
+            payload: newMessage,
+          };
 
-          inputRef.current.focus();
+          dispatch(addAction);
+
+          const input = inputRef.current;
+          input.value = '';
+          input.focus();
         }}
       >
-        <FormInput
-          ref={inputRef}
-          name="text"
-          label="message"
-          hiddenLabel
-        >
+        <FormInput ref={inputRef} name="message" label="message" hiddenLabel>
           메시지
         </FormInput>
         <button type="submit">추가</button>
       </form>
 
       <ul className="my-5">
-        {messages.map((m, i) => (
+        {messageState.messages.map((m, i) => (
           <li key={i}>{m}</li>
         ))}
       </ul>
