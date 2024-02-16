@@ -1,14 +1,15 @@
 import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import router from '@/routes';
 
 // 1. QueryClient 인스턴스 생성
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // staleTime: 1000ms * 25,
+      // staleTime: 1000 * 25,
     },
   },
 });
@@ -25,6 +26,7 @@ function Exercise() {
           </p>
         </div>
         <RouterProvider router={router} />
+        <ReactQueryDevtools buttonPosition="bottom-left" />
       </QueryClientProvider>
     </HelmetProvider>
   );
