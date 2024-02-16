@@ -43,6 +43,8 @@
     "vite": "5.0.11"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.20.5",
+    "@tanstack/react-query-devtools": "^5.20.5",
     "pocketbase": "0.21.1",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
